@@ -481,12 +481,14 @@ _Share and earn! 💰_`;
   }
   
   // Handle general messages
-  async handleGeneralMessage(doctor, text) {
-    await whatsappService.sendTextMessage(
-      doctor.whatsappNumber,
-      `How else can I help you?\n\n_Type "menu" for main menu._`
-    );
-  }
+ async handleGeneralMessage(doctor, text) {
+  await whatsappService.sendTextMessage(
+    doctor.whatsappNumber,
+    `Sorry, I didn’t quite understand your message.
+
+Could you please tell me what you’d like help with?`
+  );
+}
   
   // Track interaction
   async trackInteraction(doctorId, phoneNumber, type, details) {
