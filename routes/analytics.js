@@ -53,7 +53,7 @@ router.get('/doctors/recent', async (req, res) => {
     const doctors = await Doctor.find()
       .sort({ createdAt: -1 })
       .limit(limit)
-      .select('name city specialty selectedOption status createdAt lastInteraction');
+      .select('name city specialty selectedOption status createdAt lastInteraction whatsappNumber');
     
     res.json({ success: true, doctors });
   } catch (error) {

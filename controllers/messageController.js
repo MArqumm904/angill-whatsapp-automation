@@ -114,7 +114,7 @@ Before we proceed, may I know:
     
     await whatsappService.sendTextMessage(
       doctor.whatsappNumber,
-      `Great! ${city} 📍\n\n*3️⃣ What is your specialty?*\n\n_Example: Cardiologist, Dentist, Orthopedic, General Physician_`
+      `Great! ${city} 📍\n\n*3️⃣ What is your specialty?*\n\n_Example: Cardiologist, Dentist, Orthopedic, General Physician`
     );
   }
   
