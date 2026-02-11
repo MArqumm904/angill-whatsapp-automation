@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/database');
 const webhookRouter = require('./routes/webhook');
 const analyticsRouter = require('./routes/analytics');
+const conversationsRouter = require('./routes/conversations');
 const cronJobs = require('./jobs/cronJobs');
 
 const app = express();
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/webhook', webhookRouter);
 app.use('/api/analytics', analyticsRouter);
+app.use('/api/conversations', conversationsRouter);
 
 // Health check
 app.get('/', (req, res) => {
@@ -94,6 +96,13 @@ app.get('/api', (req, res) => {
         GET: '/api/analytics/activity/daily - Daily activity',
         GET: '/api/analytics/doctors/search - Search doctors'
       },
+      conversations: {
+        GET: '/api/conversations - All conversations',
+        GET: '/api/conversations/:id - Get by ID',
+        GET: '/api/conversations/doctor/:doctorId - Get by doctor',
+        GET: '/api/conversations/stats/overview - Statistics',
+        GET: '/api/conversations/search/query - Search'
+      },
       system: {
         GET: '/ - Health check',
         GET: '/config/check - Configuration status',
@@ -148,10 +157,12 @@ const server = app.listen(PORT, () => {
   ║  📱 WhatsApp: ${process.env.META_ACCESS_TOKEN ? '✅ Configured' : '❌ Not Configured'}                   ║
   ║  ⏰ Cron Jobs: ✅ Running                             ║
   ║  📊 Analytics: ✅ Available                          ║
+  ║  💬 Conversations: ✅ Available                      ║
   ╟───────────────────────────────────────────────────────╢
   ║  🔗 Important URLs:                                   ║
   ║  • Webhook: http://localhost:${PORT}/webhook         ║
   ║  • Dashboard: http://localhost:${PORT}/api/analytics  ║
+  ║  • Conversations: http://localhost:${PORT}/api/conversations ║
   ║  • Config: http://localhost:${PORT}/config/check     ║
   ╚═══════════════════════════════════════════════════════╝
   
