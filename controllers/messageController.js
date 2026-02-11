@@ -270,6 +270,10 @@ _After registration, our team will activate your profile within 24 hours._
 *Would you like to schedule a 5-minute orientation call?*`;
     
     await whatsappService.sendTextMessage(doctor.whatsappNumber, message);
+
+    doctor.videoWatched = true;
+    doctor.registered = true;
+      await doctor.save();
     
     // Send Yes/No buttons
     setTimeout(async () => {
@@ -379,6 +383,9 @@ ${process.env.SMART_CALENDAR_DEMO_URL || 'https://youtu.be/demo'}
 *Would you like a live demo?*`;
     
     await whatsappService.sendTextMessage(doctor.whatsappNumber, message);
+
+      doctor.videoWatched = true;
+      await doctor.save();
     
     setTimeout(async () => {
       await whatsappService.sendButtonMessage(
